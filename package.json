@@ -1,0 +1,33 @@
+{
+  "name": "paris-bike-parking-locations",
+  "version": "0.0.0",
+  "description": "Retrieves public bike parking locations from Paris' Open Data API",
+  "scripts": {
+    "start": "concurrently --kill-others -c bgGreen.bold,bgBlue.bold npm:start:parcel npm:start:tsc",
+    "start:tsc": "tsc -p . --noEmit -w",
+    "start:parcel": "parcel src/*.html",
+    "build": "npm run -s lint && tsc -p . --noEmit && npm run -s build:parcel",
+    "build:parcel": "parcel build src/*.html --public-url .",
+    "lint": "tslint -p . -t stylish"
+  },
+  "keywords": [],
+  "author": "Dhaya <https://github.com/dhayab>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/leaflet": "^1.5.0",
+    "@types/leaflet-providers": "^1.2.0",
+    "autoprefixer": "^9.6.1",
+    "concurrently": "^4.1.1",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-purgecss": "^2.1.2",
+    "posthtml-favicons": "^1.3.0",
+    "sass": "^1.22.9",
+    "tslint": "^5.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "leaflet": "^1.5.1",
+    "leaflet-providers": "^1.8.0"
+  }
+}

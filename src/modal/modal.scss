@@ -1,0 +1,93 @@
+modal {
+	display: block;
+}
+
+:root {
+	--modal-color: #666666;
+	--modal-color-r: 102;
+	--modal-color-g: 102;
+	--modal-color-b: 102;
+}
+
+.modal {
+	position: fixed;
+	top: 0; left: 0;
+	right: 0; bottom: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	opacity: 0;
+	background-color: rgba(var(--modal-color-r), var(--modal-color-g), var(--modal-color-b), .2);
+	transition: opacity 0s linear;
+	pointer-events: none;
+	z-index: 100000;
+
+	&--visible {
+		opacity: 1;
+		transition-duration: .3s;
+		pointer-events: initial;
+	}
+
+	&--error {
+		--modal-color: #D8000C;
+		--modal-color-r: 216;
+		--modal-color-g: 0;
+		--modal-color-b: 12;
+	}
+
+	&__content {
+		position: relative;
+		padding: 3.2rem 1.6rem;
+		background-color: rgba(var(--modal-color-r), var(--modal-color-g), var(--modal-color-b), .5);
+		backdrop-filter: blur(1rem);
+
+		&::before, &::after {
+			content: '';
+			position: absolute;
+			bottom: 100%;
+			height: .4rem;
+		}
+
+		&::before {
+			left: 0;
+			width: 100%;
+			background-color: rgba(var(--modal-color-r), var(--modal-color-g), var(--modal-color-b), .4);
+		}
+	}
+
+	&--loading &__content::after {
+		left: -20rem;
+		width: 20rem;
+		background-color: var(--modal-color);
+		animation: loading 2s linear infinite;
+	}
+
+	&--error &__content::after {
+		left: 0;
+		width: 100%;
+		background-color: var(--modal-color);
+		animation: pulse 1s linear;
+	}
+
+	&__text {
+		margin: 0;
+		color: #fff;
+		text-align: center;
+	}
+
+	@keyframes loading {
+		from { left: -20rem; width: 30%; }
+		50% { width: 30%; }
+		70% { width: 70%; }
+		80% { left: 50%; }
+		95% { left: 120%; }
+		to { left: 100%; }
+	}
+
+	@keyframes pulse {
+		from { opacity: 0; }
+		25% { opacity: 1; }
+		50% { opacity: 0; }
+		to { opacity: 1; }
+	}
+}

@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "module": "es2015",
-    "lib": ["es2016", "dom"],
-    "target": "es5",
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM"],
     "baseUrl": "./src",
     "paths": {
       "~*": ["./*"]
@@ -12,21 +12,17 @@
     "newLine": "LF",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "strictNullChecks": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "strictFunctionTypes": false,
     "allowSyntheticDefaultImports": true,
-    "importHelpers": true,
-    "noEmitHelpers": true
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "./src/**/*"
-  ]
+  "include": ["./src/**/*"]
 }

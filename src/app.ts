@@ -1,21 +1,26 @@
 import 'leaflet/dist/leaflet.css';
-import './app.scss';
+import './app.css';
 
-import L, { LatLngLiteral, LatLngTuple } from 'leaflet';
+import L, { LatLngLiteral, LatLngTuple, TileLayerOptions } from 'leaflet';
 
 import { Modal, ModalType } from './modal';
 import { getBikeParkingLocations, openMapsNavigation } from './services';
 import { getHashAsLocation, Icon } from './utils';
 
-require('leaflet-providers'); // tslint:disable-line:no-var-requires
-
-const DEFAULT_COORDS: LatLngTuple = [48.858779, 2.344626]; // tslint:disable-line:no-magic-numbers
+const DEFAULT_COORDS: LatLngTuple = [48.858779, 2.344626];
 const ZOOM_CITY = 13;
 const ZOOM_DISTRICT = 17;
 
+const TILE_URL = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+const TILE_OPTIONS: TileLayerOptions = {
+	attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+	subdomains: 'abcd',
+	maxZoom: 20,
+};
+
 // initialize map
 const map = L.map(document.querySelector('.map') as HTMLElement).setView(DEFAULT_COORDS, ZOOM_CITY);
-L.tileLayer.provider('Stamen.TonerLite').addTo(map);
+L.tileLayer(TILE_URL, TILE_OPTIONS).addTo(map);
 const markers = L.layerGroup().addTo(map);
 
 const modal = new Modal();

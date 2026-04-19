@@ -1,4 +1,4 @@
-import './modal.scss';
+import './modal.css';
 
 export enum ModalType {
 	Error = 'error',
